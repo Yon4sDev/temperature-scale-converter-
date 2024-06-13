@@ -1,0 +1,48 @@
+print("Welcome to the Simple Temperature Converter!")
+
+# Temperature scale options
+celsius = 1
+fahrenheit = 2
+
+# Get user input
+while True:
+  print("\nSelect the temperature scale you want to convert from:")
+  print(f"  1. Celsius")
+  print(f"  2. Fahrenheit")
+
+  try:
+    from_scale = int(input("Enter your choice (1 or 2): "))
+    if from_scale not in (celsius, fahrenheit):
+      raise ValueError
+  except ValueError:
+    print("Invalid choice. Please enter 1 for Celsius or 2 for Fahrenheit.")
+    continue
+
+  temperature = float(input("Enter the temperature value: "))
+
+  print("\nSelect the temperature scale you want to convert to:")
+  print(f"  1. Celsius")
+  print(f"  2. Fahrenheit")
+
+  try:
+    to_scale = int(input("Enter your choice (1 or 2): "))
+    if to_scale not in (celsius, fahrenheit):
+      raise ValueError
+  except ValueError:
+    print("Invalid choice. Please enter 1 for Celsius or 2 for Fahrenheit.")
+    continue
+
+  # Convert temperature based on user choices
+  if from_scale == celsius and to_scale == fahrenheit:
+    converted_temperature = (temperature * (9/5)) + 32
+    print(f"{temperature:.2f} degrees Celsius is equal to {converted_temperature:.2f} degrees Fahrenheit.")
+  elif from_scale == fahrenheit and to_scale == celsius:
+    converted_temperature = (temperature - 32) * (5/9)
+    print(f"{temperature:.2f} degrees Fahrenheit is equal to {converted_temperature:.2f} degrees Celsius.")
+  else:
+    print("You selected the same temperature scale. No conversion needed.")
+
+  choice = input("Do you want to convert again? (y/n): ").lower()
+  if choice != 'y':
+    print("Exiting converter.")
+    break
